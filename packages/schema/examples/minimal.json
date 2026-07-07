@@ -1,0 +1,8 @@
+{
+  "specVersion": "1.0.0",
+  "publisher": { "name": "Minimal", "domain": "minimal.example", "contact": "mailto:ai@minimal.example" },
+  "lastUpdated": "2026-07-06",
+  "languages": ["en"],
+  "aiSystems": [],
+  "evidence": { "retentionMonths": 6 }
+}

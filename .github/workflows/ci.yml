@@ -1,0 +1,39 @@
+# Generated from the AIDisclose monorepo (scripts/public-repo/ci.yml). Do not edit here.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  snippet:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/snippet
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/snippet/package-lock.json
+      - run: npm ci
+      - run: npm run build   # minify + print sizes + SRI hash
+      - run: node --test     # behavior + 24-language parity vs shared/src/i18n.ts
+
+  schema:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/schema
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/schema/package-lock.json
+      - run: npm ci
+      - run: node --test     # valid + invalid manifest fixtures

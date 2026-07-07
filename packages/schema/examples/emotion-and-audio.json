@@ -1,0 +1,27 @@
+{
+  "specVersion": "1.0.0",
+  "publisher": { "name": "Sensor Co", "domain": "sensor.example", "contact": "https://sensor.example/contact" },
+  "lastUpdated": "2026-07-06",
+  "languages": ["en", "de"],
+  "aiSystems": [
+    {
+      "id": "mood-cam",
+      "name": "Mood analyser",
+      "role": "deployer",
+      "kind": "emotion-recognition",
+      "purpose": "Detects visitor sentiment at kiosks",
+      "obligations": [{ "jurisdiction": "eu", "provisions": ["art50-3"] }],
+      "disclosure": { "methods": ["banner"], "scope": "site" }
+    },
+    {
+      "id": "voice-bot",
+      "name": "Voice assistant",
+      "role": "provider",
+      "kind": "conversational",
+      "purpose": "Spoken customer support",
+      "obligations": [{ "jurisdiction": "eu", "provisions": ["art50-1"] }],
+      "disclosure": { "methods": ["audio-notice", "banner"], "scope": "site" }
+    }
+  ],
+  "evidence": { "retentionMonths": 6 }
+}

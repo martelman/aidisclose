@@ -1,0 +1,21 @@
+{
+  "specVersion": "1.0.0",
+  "publisher": {
+    "name": "Bad Enum GmbH",
+    "domain": "bad-enum.example",
+    "contact": "mailto:ai@bad-enum.example"
+  },
+  "lastUpdated": "2026-07-02",
+  "languages": ["en"],
+  "aiSystems": [
+    {
+      "id": "support-bot",
+      "name": "Support Bot",
+      "role": "owner",
+      "kind": "conversational",
+      "purpose": "Customer support chat",
+      "disclosure": { "methods": ["banner"] }
+    }
+  ],
+  "evidence": { "retentionMonths": 6 }
+}

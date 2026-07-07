@@ -1,0 +1,20 @@
+{
+  "name": "@aidisclose/snippet",
+  "version": "1.0.0",
+  "description": "aidisclose.js dependency-free AI-content disclosure snippet (~7.8 KB gzipped)",
+  "license": "MIT",
+  "author": "Pine Solutions Inc.",
+  "main": "dist/aidisclose.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "devDependencies": {
+    "esbuild": "^0.24.2",
+    "jsdom": "^25.0.1"
+  }
+}

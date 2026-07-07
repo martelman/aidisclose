@@ -1,0 +1,17 @@
+{
+  "specVersion": "1.0.0",
+  "publisher": { "name": "X", "domain": "x.example", "contact": "mailto:a@x.example" },
+  "lastUpdated": "2026-07-06",
+  "languages": ["en"],
+  "noAiDeclared": true,
+  "aiSystems": [
+    {
+      "id": "s1",
+      "name": "S1",
+      "role": "deployer",
+      "kind": "conversational",
+      "purpose": "Contradicts noAiDeclared",
+      "disclosure": { "methods": ["banner"] }
+    }
+  ]
+}

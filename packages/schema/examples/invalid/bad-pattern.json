@@ -1,0 +1,12 @@
+{
+  "specVersion": "1.0.0",
+  "publisher": {
+    "name": "Bad Pattern GmbH",
+    "domain": "bad-pattern.example",
+    "contact": "http://insecure.example/contact"
+  },
+  "lastUpdated": "2026-07-02",
+  "languages": ["en"],
+  "aiSystems": [],
+  "evidence": { "retentionMonths": 6 }
+}

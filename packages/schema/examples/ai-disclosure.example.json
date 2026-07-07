@@ -1,0 +1,131 @@
+{
+  "$schema": "https://aidisclose.io/schema/1.0.0/ai-disclosure.schema.json",
+  "specVersion": "1.0.0",
+  "publisher": {
+    "name": "Exemple Média",
+    "legalName": "Exemple Média SARL",
+    "domain": "exemple-media.eu",
+    "contact": "mailto:ai-transparency@exemple-media.eu"
+  },
+  "lastUpdated": "2026-07-02",
+  "languages": ["fr", "en", "de"],
+  "aiSystems": [
+    {
+      "id": "support-bot",
+      "name": "Assistant Exemple",
+      "role": "deployer",
+      "kind": "conversational",
+      "vendor": "Anthropic",
+      "model": "claude-sonnet-4-6",
+      "purpose": "Customer support chat on the website",
+      "obligations": [{ "jurisdiction": "eu", "provisions": ["art50-1"] }],
+      "agentInteractionPolicy": "always",
+      "disclosure": {
+        "methods": ["banner"],
+        "placement": "Chat widget, shown at first interaction",
+        "texts": {
+          "fr": "Vous échangez avec un système d'intelligence artificielle.",
+          "en": "You are interacting with an AI system.",
+          "de": "Sie interagieren mit einem KI-System."
+        }
+      }
+    },
+    {
+      "id": "article-illustrations",
+      "name": "Editorial image generation",
+      "role": "both",
+      "kind": "content-generation",
+      "purpose": "Illustrative images accompanying articles",
+      "mediaTypes": ["image"],
+      "obligations": [
+        { "jurisdiction": "eu", "provisions": ["art50-2", "art50-4"] },
+        {
+          "jurisdiction": "us-ca",
+          "provisions": ["sb942-latent", "sb942-visible", "sb942-detection-tool"],
+          "params": { "monthlyUserThreshold": 1000000 }
+        }
+      ],
+      "generationDegree": "fully-ai-generated",
+      "disclosure": {
+        "methods": ["inline-label", "metadata"],
+        "scope": "element",
+        "placement": "Visible AI label on each image + C2PA manifest",
+        "texts": {
+          "fr": "Image générée par IA",
+          "en": "AI-generated image",
+          "de": "KI-generiertes Bild"
+        }
+      }
+    },
+    {
+      "id": "news-drafts",
+      "name": "AI-drafted news copy",
+      "role": "deployer",
+      "kind": "content-generation",
+      "purpose": "AI-drafted text on news pages, not individually reviewed",
+      "mediaTypes": ["text"],
+      "publicInterest": true,
+      "obligations": [{ "jurisdiction": "eu", "provisions": ["art50-4"] }],
+      "generationDegree": "ai-assisted",
+      "editorialResponsibility": { "humanReview": false },
+      "disclosure": {
+        "methods": ["banner"],
+        "scope": "page",
+        "pages": ["/news/*", "/wire/*"],
+        "placement": "Page-level notice on news and wire pages",
+        "texts": {
+          "fr": "Contenu généré par IA",
+          "en": "AI-generated content",
+          "de": "KI-generierter Inhalt"
+        }
+      }
+    },
+    {
+      "id": "editorial-blog",
+      "name": "AI-assisted editorial blog",
+      "role": "deployer",
+      "kind": "content-generation",
+      "purpose": "Blog posts drafted with AI and reviewed by an editor before publication",
+      "mediaTypes": ["text"],
+      "obligations": [{ "jurisdiction": "eu", "provisions": ["art50-4"] }],
+      "generationDegree": "ai-assisted",
+      "editorialResponsibility": {
+        "humanReview": true,
+        "statementUrl": "https://exemple-media.eu/politique-editoriale"
+      },
+      "disclosure": {
+        "methods": ["banner", "metadata"],
+        "scope": "site",
+        "placement": "Site-wide notice; each post carries a named reviewer in the evidence register",
+        "texts": {
+          "fr": "Contenu assisté par IA, revu par un humain",
+          "en": "AI-assisted, human-reviewed content",
+          "de": "KI-unterstützter, von Menschen geprüfter Inhalt"
+        }
+      }
+    }
+  ],
+  "contentMarking": {
+    "machineReadable": [
+      { "standard": "C2PA", "scope": "images" },
+      { "standard": "IPTC-DigitalSourceType", "scope": "images" },
+      { "standard": "schema.org", "scope": "text" }
+    ],
+    "visibleLabel": { "style": "AI-acronym", "localized": true },
+    "detectionToolUrl": "https://exemple-media.eu/ai-detection"
+  },
+  "editorialResponsibility": {
+    "humanReview": true,
+    "statementUrl": "https://exemple-media.eu/politique-editoriale"
+  },
+  "evidence": {
+    "retentionMonths": 12
+  },
+  "exemptions": [
+    {
+      "systemId": "support-bot",
+      "basis": "obviousness",
+      "rationale": "Widget is explicitly branded as an AI assistant; banner shown regardless as belt-and-braces."
+    }
+  ]
+}

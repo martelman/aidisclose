@@ -1,0 +1,19 @@
+{
+  "name": "@aidisclose/schema",
+  "version": "1.0.0",
+  "description": "JSON Schema for /.well-known/ai-disclosure.json: the open AI-content-disclosure manifest (EU AI Act Article 50, California SB 942, and more)",
+  "license": "MIT",
+  "author": "Pine Solutions Inc.",
+  "main": "ai-disclosure.schema.json",
+  "files": [
+    "ai-disclosure.schema.json",
+    "examples"
+  ],
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "devDependencies": {
+    "ajv": "^8.17.1",
+    "ajv-formats": "^3.0.1"
+  }
+}

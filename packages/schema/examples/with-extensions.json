@@ -1,0 +1,24 @@
+{
+  "specVersion": "1.1.0",
+  "x-vendor-note": "A future minor version with vendor extension fields, carried unchanged through a 1.0.0 reader.",
+  "publisher": {
+    "name": "Future Co",
+    "domain": "future.example",
+    "contact": "mailto:ai@future.example",
+    "x-internal-id": "acct_123"
+  },
+  "lastUpdated": "2026-07-06",
+  "languages": ["en"],
+  "aiSystems": [
+    {
+      "id": "new-modality",
+      "name": "Experimental system",
+      "role": "both",
+      "kind": "real-time-voice",
+      "purpose": "A modality that postdates spec 1.0.0",
+      "disclosure": { "methods": ["audio-notice"], "x-experimental": true },
+      "x-capability": "voice-watermark"
+    }
+  ],
+  "evidence": { "retentionMonths": 6, "x-vault": "kms://vault/1" }
+}
