@@ -16,7 +16,7 @@
   var SCRIPT_EL = d.currentScript;
   var SCRIPT_SRC = (SCRIPT_EL && SCRIPT_EL.src) || '';
 
-  /* ---- i18n-start: 24 official EU languages (parity-tested vs packages/shared/src/i18n.ts) ---- */
+  /* ---- i18n-start: 24 EU + 4 worldwide locales (parity-tested vs packages/shared/src/i18n.ts) ---- */
   /* interact: 50(1) banner text | content: badge tooltip | close: dismiss label */
   var I18N = {
     bg: { interact: 'Взаимодействате със система с изкуствен интелект.', content: 'Съдържание, генерирано от ИИ', close: 'Затвори', hm: 'Създадено от хора', reviewed: "Създадено с помощта на ИИ, прегледано от човек" },
@@ -42,10 +42,14 @@
     sk: { interact: 'Komunikujete so systémom umelej inteligencie.', content: 'Obsah vygenerovaný umelou inteligenciou', close: 'Zavrieť', hm: 'Vytvorené ľuďmi', reviewed: "S pomocou UI, skontrolované človekom" },
     sl: { interact: 'Komunicirate s sistemom umetne inteligence.', content: 'Vsebina, ustvarjena z UI', close: 'Zapri', hm: 'Ustvarili ljudje', reviewed: "Ob pomoči UI, pregledal človek" },
     es: { interact: 'Está interactuando con un sistema de inteligencia artificial.', content: 'Contenido generado por IA', close: 'Cerrar', hm: 'Hecho por humanos', reviewed: "Asistido por IA, revisado por humanos" },
-    sv: { interact: 'Du interagerar med ett AI-system.', content: 'AI-genererat innehåll', close: 'Stäng', hm: 'Skapat av människor', reviewed: "AI-assisterad, granskad av människor" }
+    sv: { interact: 'Du interagerar med ett AI-system.', content: 'AI-genererat innehåll', close: 'Stäng', hm: 'Skapat av människor', reviewed: "AI-assisterad, granskad av människor" },
+    'zh-Hans': { interact: '您正在与人工智能系统进行交互。', content: '人工智能生成的内容', close: '关闭', hm: '由人类制作', reviewed: "人工智能辅助，人工审核" },
+    ko: { interact: '귀하는 AI 시스템과 상호작용하고 있습니다.', content: 'AI 생성 콘텐츠', close: '닫기', hm: '사람 제작', reviewed: "AI 지원, 사람 검토" },
+    hi: { interact: 'आप एक एआई प्रणाली के साथ संवाद कर रहे हैं।', content: 'एआई-जनित सामग्री', close: 'बंद करें', hm: 'मनुष्यों द्वारा निर्मित', reviewed: "एआई-सहायता प्राप्त, मानव-समीक्षित" },
+    'pt-BR': { interact: 'Você está interagindo com um sistema de IA.', content: 'Conteúdo gerado por IA', close: 'Fechar', hm: 'Feito por humanos', reviewed: "Com assistência de IA, revisado por humanos" }
   };
   /* Localized "AI" acronym per Code-of-Practice icon convention */
-  var ACRONYM = { de: 'KI', fr: 'IA', es: 'IA', it: 'IA', pt: 'IA', ro: 'IA', pl: 'SI', fi: 'TEKOÄLY', el: 'ΤΝ', bg: 'ИИ', lv: 'MI', hu: 'MI', lt: 'DI', sl: 'UI', ga: 'IS', mt: 'IA' };
+  var ACRONYM = { de: 'KI', fr: 'IA', es: 'IA', it: 'IA', pt: 'IA', ro: 'IA', pl: 'SI', fi: 'TEKOÄLY', el: 'ΤΝ', bg: 'ИИ', lv: 'MI', hu: 'MI', lt: 'DI', sl: 'UI', ga: 'IS', mt: 'IA', 'pt-BR': 'IA' };
   /* ---- i18n-end ---- */
 
   /* ---- css-start: extracted verbatim to dist/aidisclose.css by scripts/build.mjs ---- */

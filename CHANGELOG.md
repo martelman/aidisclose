@@ -25,8 +25,8 @@ Snippet:
   manifests work with zero configuration.
 - Single-tag install (`data-aidisclose="KEY"`), plus `data-manifest-url`, `data-lang`,
   `data-theme`, `data-banner`, `data-manual`; `window.AIDiscloseConfig` takes precedence.
-- 24-language string table (all official EU languages) with the Code-of-Practice AI acronym map.
-- Dependency-free, about 7.8 KB gzipped, no cookies, no tracking.
+- 28-language string table (24 official EU languages plus Simplified Chinese, Korean, Hindi, Brazilian Portuguese) with the Code-of-Practice AI acronym map.
+- Dependency-free, about 8.2 KB gzipped, no cookies, no tracking.
 
 Schema (`specVersion` 1.0.0):
 

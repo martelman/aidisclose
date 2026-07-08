@@ -1,6 +1,6 @@
 # The AIDisclose snippet
 
-`aidisclose.js` is the on-site script that reads your `ai-disclosure.json` manifest and renders the disclosures the law requires: an interaction banner for chatbots, a persistent content notice, visible labels on marked media, and machine-readable page metadata. It is dependency-free, about 7.8 KB gzipped, and meets WCAG 2.1 AA.
+`aidisclose.js` is the on-site script that reads your `ai-disclosure.json` manifest and renders the disclosures the law requires: an interaction banner for chatbots, a persistent content notice, visible labels on marked media, and machine-readable page metadata. It is dependency-free, about 8.2 KB gzipped, and meets WCAG 2.1 AA.
 
 This page is the full configuration and customization reference. For platform-by-platform install steps (WordPress, Shopify, Webflow, tag managers), see the [install guide](https://aidisclose.io/docs/install/). You can also read this document as [raw markdown](https://aidisclose.io/docs/snippet.md).
 
@@ -14,7 +14,7 @@ One script tag drives everything. On load the snippet fetches your manifest, the
 - **Page metadata**: a `<link rel="ai-disclosure">` and `<meta name="ai-disclosure">` pointing at your manifest.
 - **"Made by humans" badge**, when the manifest sets `noAiDeclared`.
 
-Everything below is optional. With no configuration the snippet reads your `/.well-known/ai-disclosure.json`, renders in the visitor's language across 24 locales, follows the operating system light or dark preference, and stacks above known cookie-consent bars so the two never overlap.
+Everything below is optional. With no configuration the snippet reads your `/.well-known/ai-disclosure.json`, renders in the visitor's language across 28 locales, follows the operating system light or dark preference, and stacks above known cookie-consent bars so the two never overlap.
 
 ## Install
 
@@ -115,7 +115,7 @@ By default the banner is a fixed overlay at the bottom of the viewport. Set `mou
 
 ## Custom wording
 
-The banner and chip carry accurate localized text in 24 languages out of the box. To override the wording:
+The banner and chip carry accurate localized text in 28 languages out of the box. To override the wording:
 
 - **Per language, in the manifest.** Add `disclosure.texts` to a system, keyed by language code. The snippet uses your text for the matching visitor language:
 

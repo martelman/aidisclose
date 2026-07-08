@@ -10,11 +10,17 @@ export const EU_LOCALES = [
 ] as const;
 export type EuLocale = (typeof EU_LOCALES)[number];
 
+/** Worldwide markets with binding AI-disclosure law, beyond the EU. */
+export const WORLDWIDE_LOCALES = ['zh-Hans', 'ko', 'hi', 'pt-BR'] as const;
+/** Every locale the product ships (EU 24 + worldwide 4). */
+export const LOCALES = [...EU_LOCALES, ...WORLDWIDE_LOCALES] as const;
+export type Locale = (typeof LOCALES)[number];
+
 /** Localized "AI" acronym per Code-of-Practice icon convention. Absent = "AI". */
-export const ACRONYM: Partial<Record<EuLocale, string>> = {
+export const ACRONYM: Partial<Record<Locale, string>> = {
   de: 'KI', fr: 'IA', es: 'IA', it: 'IA', pt: 'IA', ro: 'IA', pl: 'SI',
   fi: 'TEKOÄLY', el: 'ΤΝ', bg: 'ИИ', lv: 'MI', hu: 'MI', lt: 'DI', sl: 'UI',
-  ga: 'IS', mt: 'IA',
+  ga: 'IS', mt: 'IA', 'pt-BR': 'IA',
 };
 
 export interface TierAStrings {
@@ -38,7 +44,7 @@ export interface TierAStrings {
   reviewed: string;
 }
 
-export const STRINGS: Record<EuLocale, TierAStrings> = {
+export const STRINGS: Record<Locale, TierAStrings> = {
   bg: { interact: 'Взаимодействате със система с изкуствен интелект.', content: 'Съдържание, генерирано от ИИ', close: 'Затвори', reportTitle: 'Доклад за прозрачност относно ИИ', levelLabel: 'Ниво на съответствие', evidenceRegister: 'Регистър на доказателствата', generatedAt: 'Генерирано на', humanMade: "Създадено от хора", reviewed: "Създадено с помощта на ИИ, прегледано от човек" },
   hr: { interact: 'Komunicirate sa sustavom umjetne inteligencije.', content: 'Sadržaj generiran umjetnom inteligencijom', close: 'Zatvori', reportTitle: 'Izvješće o transparentnosti UI', levelLabel: 'Razina sukladnosti', evidenceRegister: 'Registar dokaza', generatedAt: 'Generirano', humanMade: "Izradili ljudi", reviewed: "Uz pomoć UI, pregledao čovjek" },
   cs: { interact: 'Komunikujete se systémem umělé inteligence.', content: 'Obsah vytvořený umělou inteligencí', close: 'Zavřít', reportTitle: 'Zpráva o transparentnosti AI', levelLabel: 'Úroveň shody', evidenceRegister: 'Registr důkazů', generatedAt: 'Vygenerováno', humanMade: "Vytvořeno lidmi", reviewed: "S pomocí AI, zkontrolováno člověkem" },
@@ -63,12 +69,25 @@ export const STRINGS: Record<EuLocale, TierAStrings> = {
   sl: { interact: 'Komunicirate s sistemom umetne inteligence.', content: 'Vsebina, ustvarjena z UI', close: 'Zapri', reportTitle: 'Poročilo o preglednosti UI', levelLabel: 'Raven skladnosti', evidenceRegister: 'Register dokazov', generatedAt: 'Ustvarjeno', humanMade: "Ustvarili ljudje", reviewed: "Ob pomoči UI, pregledal človek" },
   es: { interact: 'Está interactuando con un sistema de inteligencia artificial.', content: 'Contenido generado por IA', close: 'Cerrar', reportTitle: 'Informe de transparencia de IA', levelLabel: 'Nivel de conformidad', evidenceRegister: 'Registro de evidencias', generatedAt: 'Generado el', humanMade: "Hecho por humanos", reviewed: "Asistido por IA, revisado por humanos" },
   sv: { interact: 'Du interagerar med ett AI-system.', content: 'AI-genererat innehåll', close: 'Stäng', reportTitle: 'AI-transparensrapport', levelLabel: 'Konformitetsnivå', evidenceRegister: 'Bevisregister', generatedAt: 'Genererad', humanMade: "Skapat av människor", reviewed: "AI-assisterad, granskad av människor" },
+  "zh-Hans": { interact: "您正在与人工智能系统进行交互。", content: "人工智能生成的内容", close: "关闭", reportTitle: "人工智能透明度报告", levelLabel: "符合性等级", evidenceRegister: "证据登记册", generatedAt: "生成时间", humanMade: "由人类制作", reviewed: "人工智能辅助，人工审核" },
+  "ko": { interact: "귀하는 AI 시스템과 상호작용하고 있습니다.", content: "AI 생성 콘텐츠", close: "닫기", reportTitle: "AI 투명성 보고서", levelLabel: "적합성 수준", evidenceRegister: "증거 기록부", generatedAt: "생성 시각", humanMade: "사람 제작", reviewed: "AI 지원, 사람 검토" },
+  "hi": { interact: "आप एक एआई प्रणाली के साथ संवाद कर रहे हैं।", content: "एआई-जनित सामग्री", close: "बंद करें", reportTitle: "एआई पारदर्शिता रिपोर्ट", levelLabel: "अनुरूपता स्तर", evidenceRegister: "साक्ष्य रजिस्टर", generatedAt: "तैयार किया गया", humanMade: "मनुष्यों द्वारा निर्मित", reviewed: "एआई-सहायता प्राप्त, मानव-समीक्षित" },
+  "pt-BR": { interact: "Você está interagindo com um sistema de IA.", content: "Conteúdo gerado por IA", close: "Fechar", reportTitle: "Relatório de transparência de IA", levelLabel: "Nível de conformidade", evidenceRegister: "Registro de evidências", generatedAt: "Gerado em", humanMade: "Feito por humanos", reviewed: "Com assistência de IA, revisado por humanos" },
 };
 
-export function pickLocale(candidates: string[]): EuLocale {
+const BY_LOWER = new Map<string, Locale>(LOCALES.map((l) => [l.toLowerCase(), l]));
+
+/** Resolve a caller's Accept-Language-style candidates to a supported locale.
+ *  Region-aware: an exact script/region tag wins (zh-Hans, pt-BR), then the
+ *  Chinese and Brazilian primaries, then the two-letter language. */
+export function pickLocale(candidates: string[]): Locale {
   for (const c of candidates) {
-    const two = c.slice(0, 2).toLowerCase() as EuLocale;
-    if (EU_LOCALES.includes(two)) return two;
+    const lc = c.toLowerCase();
+    if (BY_LOWER.has(lc)) return BY_LOWER.get(lc)!;
+    if (lc.startsWith('zh')) return 'zh-Hans';
+    if (lc.startsWith('pt-br')) return 'pt-BR';
+    const two = BY_LOWER.get(lc.slice(0, 2));
+    if (two) return two;
   }
   return 'en';
 }

@@ -3,7 +3,7 @@
 [![CI](https://github.com/martelman/aidisclose/actions/workflows/ci.yml/badge.svg)](https://github.com/martelman/aidisclose/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-The open parts of [AIDisclose](https://aidisclose.io), an open standard for AI-content disclosure: the disclosure snippet your visitors see, the 24-language string table it renders from, and the JSON Schema for the `ai-disclosure.json` manifest. It maps to EU AI Act Article 50 and California SB 942 (both live 2 Aug 2026) and works as a voluntary baseline anywhere; the [directory of AI-disclosure laws by region](https://aidisclose.io/laws/) marks which duties are legally binding versus voluntary. MIT licensed. The full spec lives at [aidisclose.io/spec](https://aidisclose.io/spec).
+The open parts of [AIDisclose](https://aidisclose.io), an open standard for AI-content disclosure: the disclosure snippet your visitors see, the 28-language string table it renders from, and the JSON Schema for the `ai-disclosure.json` manifest. It maps to EU AI Act Article 50 and California SB 942 (both live 2 Aug 2026) and works as a voluntary baseline anywhere; the [directory of AI-disclosure laws by region](https://aidisclose.io/laws/) marks which duties are legally binding versus voluntary. MIT licensed. The full spec lives at [aidisclose.io/spec](https://aidisclose.io/spec).
 
 > This repository is generated from the AIDisclose monorepo and published on each release. Don't open PRs against it directly. File issues here, and we'll land the fix upstream. Every commit corresponds to a tagged [release](https://github.com/martelman/aidisclose/releases).
 
@@ -11,8 +11,8 @@ The open parts of [AIDisclose](https://aidisclose.io), an open standard for AI-c
 
 | Path | What it is |
 |---|---|
-| `packages/snippet` | `aidisclose.js`: renders the interaction-disclosure banner, visible AI labels on `[data-ai-content]` elements (including video overlay chips), and machine-readable page metadata. Dependency-free, about 7.8 KB gzipped, no tracking, no cookies. |
-| `packages/shared/src/i18n.ts` | The banner and label strings in 24 languages, plus the localized AI acronym map from the EU Code of Practice. |
+| `packages/snippet` | `aidisclose.js`: renders the interaction-disclosure banner, visible AI labels on `[data-ai-content]` elements (including video overlay chips), and machine-readable page metadata. Dependency-free, about 8.2 KB gzipped, no tracking, no cookies. |
+| `packages/shared/src/i18n.ts` | The banner and label strings in 28 languages (24 official EU languages plus Simplified Chinese, Korean, Hindi, Brazilian Portuguese), plus the localized AI acronym map from the EU Code of Practice. |
 | `packages/schema` | JSON Schema for `/.well-known/ai-disclosure.json`, with valid and invalid examples. |
 | `docs/SNIPPET.md` | Full configuration and customization reference: theming and brand colors via CSS variables, custom copy, content marking, single-page apps, Content Security Policy, and versioning. |
 
@@ -41,7 +41,7 @@ The CDN file is the built output of `packages/snippet/src/aidisclose.js`. To ver
 cd packages/snippet
 npm ci
 npm run build      # prints the size and the SRI hash of the built file
-node --test        # snippet behavior + 24-language parity tests
+node --test        # snippet behavior + 28-language parity tests
 ```
 
 Most sites use the floating `/v1/` tag above and auto-update within v1.x. For high-assurance setups, pin the exact version path (`/v1.0.0/aidisclose.js`) plus its SRI hash (`npm run build` prints the hash to pin in `<script integrity="…">`). Pinned tags do not auto-update. The [install guide](https://aidisclose.io/docs/install/) shows how per platform.
